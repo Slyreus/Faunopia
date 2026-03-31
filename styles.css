@@ -1,13 +1,13 @@
 :root {
-  --bg: #f7f8ff;
-  --card: #ffffff;
-  --ink: #27304a;
-  --muted: #616d8a;
+  --bg: #f8f3ea;
+  --card: #fffaf1;
+  --ink: #39425f;
+  --muted: #6f7690;
   --primary: #74a8ff;
   --primary-dark: #5788e2;
   --accent: #f9af67;
   --ok: #7bc6a4;
-  --tile-shadow: 0 10px 25px rgba(78, 97, 145, 0.14);
+  --tile-shadow: 0 12px 24px rgba(110, 94, 73, 0.13);
   --radius: 18px;
 }
 
@@ -19,8 +19,11 @@ body {
   margin: 0;
   font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: var(--ink);
-  background: radial-gradient(circle at 0% 0%, #eaf5ff, transparent 32%),
-    radial-gradient(circle at 95% 5%, #fcecff, transparent 28%), var(--bg);
+  background:
+    radial-gradient(circle at 12% 8%, #ffe9d4, transparent 30%),
+    radial-gradient(circle at 88% 12%, #e5f6ff, transparent 26%),
+    radial-gradient(circle at 65% 90%, #fcecd8, transparent 30%),
+    linear-gradient(180deg, #fff8ef 0%, #f8f3ea 56%, #f4eedf 100%);
   min-height: 100vh;
 }
 
@@ -31,7 +34,8 @@ body {
 }
 
 .hero {
-  background: linear-gradient(145deg, #ffffff, #eff4ff);
+  background: linear-gradient(145deg, #fffdf8, #fff4e7 52%, #f6f9ff);
+  border: 1px solid #f0e3cf;
   border-radius: calc(var(--radius) + 8px);
   padding: 1.4rem;
   box-shadow: var(--tile-shadow);
@@ -50,8 +54,8 @@ body {
 
 .hero__badge {
   display: inline-block;
-  background: #e7f7ef;
-  color: #26734f;
+  background: #e9f6e8;
+  color: #2d7f57;
   font-weight: 700;
   border-radius: 999px;
   padding: 0.35rem 0.8rem;
@@ -65,9 +69,11 @@ main {
 
 .panel {
   background: var(--card);
+  border: 1px solid #efe4d3;
   border-radius: var(--radius);
   box-shadow: var(--tile-shadow);
   padding: 1rem;
+  backdrop-filter: blur(2px);
 }
 
 .panel__title-row {
@@ -115,8 +121,8 @@ main {
   padding: 0.45rem 0.82rem;
   font-weight: 700;
   font-family: inherit;
-  background: #eef2ff;
-  color: #475173;
+  background: #f5efe4;
+  color: #515978;
   cursor: pointer;
   transition: transform 140ms ease, background-color 140ms ease, color 140ms ease;
 }
@@ -180,7 +186,7 @@ main {
 }
 
 .chip--ghost {
-  background: #f1f4fb;
+  background: #f5eee0;
 }
 
 .search-row {
@@ -227,8 +233,8 @@ main {
 }
 
 .count-badge {
-  background: #e6f7ef;
-  color: #207047;
+  background: #e6f3e6;
+  color: #296448;
   border-radius: 999px;
   padding: 0.35rem 0.72rem;
   font-weight: 700;
@@ -250,10 +256,11 @@ main {
 }
 
 .species-card {
-  background: linear-gradient(180deg, #fff, #f7f9ff);
-  border: 2px solid #ebeffb;
+  background: linear-gradient(175deg, #fffdf8, #fff7ec 55%, #f5f9ff);
+  border: 1px solid #eddcc7;
   border-radius: 16px;
   padding: 0.75rem;
+  box-shadow: 0 6px 16px rgba(124, 102, 77, 0.09);
 }
 
 .species-card__head {
@@ -365,19 +372,19 @@ main {
 .empty-state {
   grid-column: 1 / -1;
   border-radius: 14px;
-  background: #fff6f0;
-  color: #8c4f30;
+  background: #fff5ea;
+  color: #8b5a3e;
   padding: 0.8rem;
-  border: 1px dashed #ffc89e;
+  border: 1px dashed #efc39d;
 }
 
 .site-footer {
   margin-top: 0.85rem;
-  background: #ffffffb5;
-  border: 1px solid #e9edfa;
+  background: #fff8ecbf;
+  border: 1px solid #efe2cf;
   border-radius: 12px;
   padding: 0.55rem 0.75rem;
-  color: #5a6380;
+  color: #676f87;
 }
 
 .site-footer p {
