@@ -31,7 +31,36 @@ const categoryLabels = {
 };
 
 const normalize = (value) => value.trim().toLowerCase();
+const fold = (value) =>
+  normalize(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const locationChips = [];
+const semanticTone = (kind, value) => {
+  const v = fold(value);
+  if (kind === 'types') {
+    if (v.startsWith('oise')) return 'tone-type-bird';
+    if (v.startsWith('insect')) return 'tone-type-insect';
+    if (v.startsWith('poisson')) return 'tone-type-fish';
+  }
+  if (kind === 'weather') {
+    if (v.includes('arc')) return 'tone-weather-rainbow';
+    if (v.includes('pluie')) return 'tone-weather-rain';
+    if (v.includes('soleil')) return 'tone-weather-sun';
+  }
+  if (kind === 'schedules') {
+    if (v.includes('nuit')) return 'tone-schedule-night';
+    if (v.includes('apres')) return 'tone-schedule-afternoon';
+    if (v.includes('soir')) return 'tone-schedule-evening';
+    if (v.includes('matin')) return 'tone-schedule-morning';
+  }
+  return null;
+};
+
+const applySemanticTone = (element, kind, value) => {
+  const tone = semanticTone(kind, value);
+  if (tone) {
+    element.classList.add(tone);
+  }
+};
 
 const buildFilterChips = (target, key, values) => {
   const uniqueValues = [...new Set(values)];
@@ -44,6 +73,7 @@ const buildFilterChips = (target, key, values) => {
     chip.dataset.value = value;
     chip.dataset.kind = key;
     chip.textContent = value;
+    applySemanticTone(chip, key, value);
 
     chip.addEventListener('click', () => {
       const bucket = state.filters[key];
@@ -65,10 +95,11 @@ const buildFilterChips = (target, key, values) => {
 };
 
 const filterLocationChips = (query) => {
-  const normalizedQuery = normalize(query);
+  const normalizedQuery = fold(query);
   locationChips.forEach(({ value, chip }) => {
-    const visible = normalize(value).includes(normalizedQuery);
-    chip.style.display = visible ? 'inline-flex' : 'none';
+    const visible =
+      fold(value).includes(normalizedQuery) || state.filters.locations.has(value);
+    chip.hidden = !visible;
   });
 };
 
@@ -129,6 +160,7 @@ const renderActiveFilters = () => {
     if (item.key && item.value) {
       chip.dataset.kind = item.key;
       chip.dataset.value = item.value;
+      applySemanticTone(chip, item.key, item.value);
     }
     refs.activeFilters.appendChild(chip);
   });
@@ -142,6 +174,7 @@ const renderBadgeList = (container, kind, values) => {
     badge.dataset.kind = kind;
     badge.dataset.value = value;
     badge.textContent = value;
+    applySemanticTone(badge, kind, value);
     container.appendChild(badge);
   });
 };
@@ -162,6 +195,7 @@ const renderSpecies = (items) => {
     const clone = refs.template.content.cloneNode(true);
     const card = clone.querySelector('.species-card');
     card.dataset.type = entry.type;
+    applySemanticTone(card, 'types', entry.type);
     clone.querySelector('.species-card__name').textContent = entry.name;
     clone.querySelector('.species-card__type-tag').textContent = entry.type;
     clone.querySelector('.species-card__location').textContent = entry.location;
