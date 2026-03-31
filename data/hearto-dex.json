@@ -135,6 +135,14 @@
       "details": "Autour des lacs"
     },
     {
+      "name": "Lucía",
+      "type": "Oiseaux",
+      "schedules": ["Nuit"],
+      "weather": ["Arc-en-ciel"],
+      "location": "My Heart",
+      "details": "Beautifullest"
+    },
+    {
       "name": "Flamant américain",
       "type": "Oiseaux",
       "schedules": ["Matin", "Après-midi", "Soir", "Nuit"],
