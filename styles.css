@@ -53,16 +53,19 @@ body {
   color: var(--muted);
 }
 
+.hero__top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
 .hero__description-row {
   margin-top: 0.45rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.65rem;
 }
 
 .hero__description-row p {
   margin: 0;
-  flex: 1;
 }
 
 .hero__title-row {
@@ -83,22 +86,32 @@ body {
 }
 
 .hero__map-button {
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 12px;
-  border: 1px solid #d4c6b2;
-  background: linear-gradient(145deg, #fffaf2, #f4e8d4);
-  color: #4c5676;
+  border-radius: 14px;
+  border: 1px solid #cfdaf3;
+  background: linear-gradient(145deg, #eef4ff, #ddeaff 55%, #f6eddf);
+  color: #355386;
   cursor: pointer;
-  font-size: 1.05rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1.1;
+  padding: 0.62rem 0.86rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.42rem;
   flex-shrink: 0;
-  box-shadow: 0 6px 14px rgba(94, 77, 54, 0.15);
-  transition: transform 140ms ease, box-shadow 140ms ease;
+  min-height: 2.45rem;
+  box-shadow: 0 8px 15px rgba(85, 112, 160, 0.2);
+  transition:
+    transform 140ms ease,
+    box-shadow 140ms ease,
+    background-color 140ms ease;
 }
 
 .hero__map-button:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 18px rgba(94, 77, 54, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 18px rgba(85, 112, 160, 0.24);
+  background: linear-gradient(145deg, #f2f7ff, #e4edff 55%, #fbf2e3);
 }
 
 .hero__map-button:focus-visible {
@@ -136,6 +149,18 @@ body {
   display: block;
   max-height: 280px;
   object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .hero__top-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__map-button {
+    width: fit-content;
+    align-self: flex-end;
+  }
 }
 
 main {

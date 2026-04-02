@@ -15,15 +15,11 @@
   <body>
     <div class="page-shell">
       <header class="hero">
-        <div class="hero__title-row">
-          <h1>Faunopia</h1>
-          <div class="hero__badge">🌿 Heartopia Companion</div>
-        </div>
-        <div class="hero__description-row">
-          <p>
-            Explore la faune de Heartopia avec des filtres visuels intelligents par type,
-            zone, météo et horaire.
-          </p>
+        <div class="hero__top-row">
+          <div class="hero__title-row">
+            <h1>Faunopia</h1>
+            <div class="hero__badge">🌿 Heartopia Companion</div>
+          </div>
           <button
             id="rareBirdMapToggle"
             class="hero__map-button"
@@ -32,8 +28,15 @@
             aria-controls="rareBirdMapPanel"
             title="Ouvrir la carte des oiseaux rares"
           >
-            🗺️
+            <span aria-hidden="true">🗺️</span>
+            <span>Carte des oiseaux rares</span>
           </button>
+        </div>
+        <div class="hero__description-row">
+          <p>
+            Explore la faune de Heartopia avec des filtres visuels intelligents par type,
+            zone, météo et horaire.
+          </p>
         </div>
         <div id="rareBirdMapPanel" class="rare-map" hidden>
           <button
