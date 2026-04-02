@@ -20,7 +20,10 @@ const refs = {
   template: document.querySelector('#species-card-template'),
   searchInput: document.querySelector('#searchInput'),
   locationSearchInput: document.querySelector('#locationSearchInput'),
-  resetFilters: document.querySelector('#resetFilters')
+  resetFilters: document.querySelector('#resetFilters'),
+  rareBirdMapToggle: document.querySelector('#rareBirdMapToggle'),
+  rareBirdMapPanel: document.querySelector('#rareBirdMapPanel'),
+  rareBirdMapClose: document.querySelector('#rareBirdMapClose')
 };
 
 const categoryLabels = {
@@ -283,6 +286,11 @@ const resetFilters = () => {
   render();
 };
 
+const setRareBirdMapOpen = (isOpen) => {
+  refs.rareBirdMapPanel.hidden = !isOpen;
+  refs.rareBirdMapToggle.setAttribute('aria-expanded', String(isOpen));
+};
+
 const init = async () => {
   const response = await fetch('./data/hearto-dex.json');
   const payload = await response.json();
@@ -304,6 +312,13 @@ const init = async () => {
   });
 
   refs.resetFilters.addEventListener('click', resetFilters);
+  refs.rareBirdMapToggle.addEventListener('click', () => {
+    const isOpen = refs.rareBirdMapPanel.hidden;
+    setRareBirdMapOpen(isOpen);
+  });
+  refs.rareBirdMapClose.addEventListener('click', () => {
+    setRareBirdMapOpen(false);
+  });
 
   render();
 };
